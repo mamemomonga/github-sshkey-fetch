@@ -5,13 +5,18 @@ import (
 	"fmt"
 	"log"
 	"flag"
+	"strings"
 	"github.com/mamemomonga/github-sshkey-fetch/src/buildinfo"
 )
 
-func main() {
+type PubKeyT struct {
+	Username string
+	Pubkey   string
+}
 
+func main() {
 	var (
-		flg_u = flag.String("u","","GitHub Username")
+		flg_u = flag.String("u","","GitHub usernames(comma separated)")
 		flg_p = flag.Bool("g",false,"Generator")
 		flg_v = flag.Bool("v",false,"Version")
 	)
@@ -26,19 +31,21 @@ func main() {
 		flag.PrintDefaults()
 		return
 	}
-	username := *flg_u
-	log.Printf("Username: %s",username)
-	sshkey,err := fetch(fmt.Sprintf("https://github.com/%s.keys",username))
-	if err != nil {
-		log.Fatal(err)
+
+	usernames := strings.Split(*flg_u,",")
+
+	var pubkeys []PubKeyT
+	for _,u := range(usernames) {
+		k,err := fetch(fmt.Sprintf("https://github.com/%s.keys",u))
+		if err != nil {
+			log.Fatal(err)
+		}
+		pubkeys = append(pubkeys, PubKeyT{ Username: u, Pubkey: k })
 	}
+
 	if(*flg_p) {
-		fmt.Println(generator(sshkey,username))
-
+		fmt.Println(genAuthKeys(pubkeys))
 	} else {
-		fmt.Println(sshkey)
-
+		fmt.Println(genKeys(pubkeys))
 	}
 }
-
-

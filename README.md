@@ -11,7 +11,7 @@
 
 macOSの例
 
-	$ export TARGET_VERSION=v0.0.2
+	$ export TARGET_VERSION=v0.0.3
 	$ curl -Lo ./github-sshkey-fetch https://github.com/mamemomonga/github-sshkey-fetch/releases/download/$TARGET_VERSION/github-sshkey-fetch-darwin-amd64
 	$ chmod 755 ./github-sshkey-fetch
 	$ mkdir ~/bin
@@ -36,11 +36,15 @@ macOSの例
 
 	$ fetch-github-ssh-key
 
-SSH公開鍵を表示する
+### SSH公開鍵を表示する
 
 	$ fetch-github-ssh-key -u mamemomonga
 
-SSH公開鍵を設定するコマンドを表示する
+カンマ区切りで複数ユーザも対応可能
+
+	$ fetch-github-ssh-key -u mamemomonga,user1,user2
+
+### SSH公開鍵を設定するコマンドを表示する
 
 	$ fetch-github-ssh-key -u mamemomonga -g
 
@@ -51,8 +55,8 @@ SSH公開鍵を設定するコマンドを表示する
 	# -----------------------------------
 	#  GitHub User: mamemomonga
 	#  Created At: 2020-06-04 05:54:20
-	ssh-ed25519 AAAAC3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-	ssh-ed25519 AAAAC3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	ssh-ed25519 AAAAxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	ssh-ed25519 AAAAxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	# -----------------------------------
 	
 	EOS

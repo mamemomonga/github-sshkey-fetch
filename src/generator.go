@@ -5,15 +5,21 @@ import (
 	"text/template"
 	"bytes"
 	"time"
+	"strings"
 )
+
 func generator(sshkeys, username string) string {
+	sshkeys = strings.TrimSpace(sshkeys)
 	t := template.Must(template.New("T").Parse(`mkdir -m 0700 -p ~/.ssh
 cat >> ~/.ssh/authorized_keys << 'EOS'
+# -----------------------------------
 #  GitHub User: {{ .Username }}  
 #  Created At: {{ .DateTime }}
 {{ .SSHKeys }}
+# -----------------------------------
+
 EOS
-chmod 700 ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
 `))
 	m := struct {
 		SSHKeys  string

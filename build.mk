@@ -1,12 +1,12 @@
+# ソースのあるディレクトリ
+SRCDIR := src
+
 # buildinfo の インポートパス
 # プロジェクトのImport Pathはgo.modから取得する
-BUILDINFO_IMPORT := $(shell cat go.mod | grep module | awk '{ print $$2 }')/$(NAME)/buildinfo
+BUILDINFO_IMPORT := $(shell cat go.mod | grep module | awk '{ print $$2 }')/$(SRCDIR)/buildinfo
 
 # 出力ディレクトリ
 BINDIR := bin
-
-# ソースのあるディレクトリ
-SRCDIR := src
 
 # バージョン
 VERSION   := v$(shell cat version)

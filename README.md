@@ -7,9 +7,12 @@
 
 ## インストール
 
+最新のバージョン番号(TARGET_VERSION)は[こちらで](https://github.com/mamemomonga/github-sshkey-fetch/releases)確認してください。
+
 macOSの例
 
-	$ curl -Lo ./github-sshkey-fetch https://github.com/mamemomonga/github-sshkey-fetch/releases/download/v0.0.1/github-sshkey-fetch-darwin-amd64
+	$ export TARGET_VERSION=v0.0.2
+	$ curl -Lo ./github-sshkey-fetch https://github.com/mamemomonga/github-sshkey-fetch/releases/download/$TARGET_VERSION/github-sshkey-fetch-darwin-amd64
 	$ chmod 755 ./github-sshkey-fetch
 	$ mkdir ~/bin
 	$ mv ./github-sshkey-fetch ~/bin/
